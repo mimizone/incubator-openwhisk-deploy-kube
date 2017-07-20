@@ -29,9 +29,9 @@ spec:
       - name: dockersock
         hostPath:
           path: "/var/run/docker.sock"
-      - name: apparmor
-        hostPath:
-          path: "/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
+      # - name: apparmor
+      #   hostPath:
+      #     path: "/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
 
       containers:
       - name: invoker
@@ -128,8 +128,8 @@ spec:
           mountPath: "/var/run/docker.sock"
         - name: dockerrootdir
           mountPath: "/containers"
-        - name: apparmor
-          mountPath: "/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
+        # - name: apparmor
+        #   mountPath: "/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
         lifecycle:
           postStart:
             exec:
@@ -137,4 +137,3 @@ spec:
               - "/bin/bash"
               - "-c"
               - "docker pull openwhisk/nodejsactionbase && docker pull openwhisk/nodejs6action && docker pull openwhisk/dockerskeleton && docker pull openwhisk/python2action && docker pull openwhisk/python3action && docker pull openwhisk/action-swift-v3.1.1 && docker pull openwhisk/swift3action && docker pull openwhisk/java8action"
-
